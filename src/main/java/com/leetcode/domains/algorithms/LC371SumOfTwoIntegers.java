@@ -1,4 +1,4 @@
-/*
+
 package com.leetcode.domains.algorithms;
 
 public class LC371SumOfTwoIntegers {
@@ -18,15 +18,20 @@ public class LC371SumOfTwoIntegers {
     static class Solution {
 
         public int getSum(int a, int b) {
-            int c = a ^ b;
-            int d = a & b;
-            while (d != 0) {
-                c ^= (d << 1);
+            int xor = a ^ b;
+            int and = a & b;
+            int tmp;
+
+            while (and != 0) {
+                tmp = xor;
+                and <<= 1;
+                xor ^= and;
+                and = tmp & and;
             }
-            return c;
+
+            return xor;
         }
 
     }
 
 }
-*/
