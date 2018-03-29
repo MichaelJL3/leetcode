@@ -106,4 +106,8 @@ public class ArgumentParser {
         return list;
     }
 
+    public static <T> T parseArg(String[] args, int position, Parser parser) {
+        return args.length > position ? (T) parser.parse(args[position]) : null;
+    }
+
 }
