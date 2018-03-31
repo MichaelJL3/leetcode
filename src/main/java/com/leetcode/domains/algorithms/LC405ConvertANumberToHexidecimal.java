@@ -20,9 +20,7 @@ public class LC405ConvertANumberToHexidecimal {
         public String toHex(int num) {
             String hex = "";   
             int i = 0;
-            char hexByte;
-            boolean noZero = true;
-
+            
             if (num == 0) return "0";
 
             while (num << i >>> 28 == 0 && i < 32) {
