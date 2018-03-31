@@ -18,6 +18,8 @@ public class Display {
     }
 
     public static <T> void print2DMatrix(T[][] mtx) {
+        if (mtx == null) return;
+
         int i = 0;
 
         for (T[] row : mtx) {
@@ -30,6 +32,8 @@ public class Display {
     }
 
     public static <T> void printArray(T[] arr) {
+        if (arr == null || arr.length == 0) return;
+
         int i = 0;
 
         for (i = 0; i < arr.length - 1; ++i) {
