@@ -77,6 +77,23 @@ public class ArgumentParser {
         return mtx;
     }
 
+    public static <A, B> Tuple<A, B> parseTuple(String tuple, Parser parserA, Parser parserB) {
+        if (tuple == null) return null;
+
+        String[] tupleArgs = tuple.split(",");
+        A arg0 = null;
+        B arg1 = null;
+
+        if (tupleArgs.length > 0) {
+            arg0 = (A) parserA.parse(tupleArgs[0]);
+        }
+        if (tupleArgs.length > 1) {
+            arg1 = (B) parserB.parse(tupleArgs[1]);
+        }
+
+        return new Tuple<A, B>(arg0, arg1);
+    }
+
     public static <A, B> Tuple<A, B> parseTuple(String tuple, Parser parser) {
         if (tuple == null) return null;
 
@@ -92,6 +109,18 @@ public class ArgumentParser {
         }
 
         return new Tuple<A, B>(arg0, arg1);
+    }
+
+    public static <A, B> ArrayList<Tuple<A, B>> parseTupleList(String[] tuples, Parser parserA, Parser parserB) {
+        ArrayList<Tuple<A, B>> list = new ArrayList<Tuple<A, B>>();
+
+        if (tuples == null) return null;
+
+        for (String tuple : tuples) {
+            list.add(ArgumentParser.<A, B>parseTuple(tuple, parserA, parserB));
+        }
+
+        return list;
     }
 
     public static <A, B> ArrayList<Tuple<A, B>> parseTupleList(String[] tuples, Parser parser) {
