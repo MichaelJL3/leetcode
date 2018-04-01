@@ -2,6 +2,7 @@
 package com.leetcode.io;
 
 import com.leetcode.util.ListNode;
+import com.leetcode.util.TreeNode;
 import com.leetcode.util.Tuple;
 
 import java.util.ArrayList;
@@ -51,6 +52,18 @@ public class Display {
         for (Tuple<A, B> tuple : tuples) {
             System.out.println(tuple);
         }
+    }
+
+    public static <T> void printTree(TreeNode<T> tree) {
+        System.out.println(dfsPrint(tree));
+    }
+
+    private static <T> String dfsPrint (TreeNode<T> tree) {
+        if (tree == null) {
+            return "(null)";
+        }
+
+        return String.format("( %s <- %s -> %s )", dfsPrint(tree.left), tree, dfsPrint(tree.right));
     }
 
 }

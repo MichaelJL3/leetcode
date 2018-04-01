@@ -3,6 +3,7 @@ package com.leetcode.io;
 
 import com.leetcode.util.parsers.Parser;
 import com.leetcode.util.ListNode;
+import com.leetcode.util.TreeNode;
 import com.leetcode.util.Tuple;
 
 import java.util.ArrayList;
@@ -133,6 +134,26 @@ public class ArgumentParser {
         }
 
         return list;
+    }
+
+    private static <T> TreeNode<T> buildTree(String[] values, int position, Parser parser) {
+        TreeNode<T> root = null;
+
+        if (position < values.length && !values[position].equals("null")) {
+            root = new TreeNode<T> ((T) parser.parse(values[position]));
+            root.left = buildTree(values, position * 2 + 1, parser);
+            root.right = buildTree(values, position * 2 + 2, parser);
+        }
+
+        return root;
+    }
+
+    public static <T> TreeNode<T> parseTree(String[] tree, Parser parser) {
+        return buildTree(tree, 0, parser);
+    }
+
+    public static <T> TreeNode<T> parseTree(String tree, Parser parser) {
+        return buildTree(tree.split(","), 0, parser);
     }
 
     public static <T> T parseArg(String[] args, int position, Parser parser) {
