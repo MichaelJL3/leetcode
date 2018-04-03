@@ -1,8 +1,6 @@
 
 package com.leetcode.domains.algorithms;
 
-import java.util.Arrays;
-
 import com.leetcode.io.ArgumentParser;
 import com.leetcode.io.Display;
 import com.leetcode.util.parsers.string.IntParser;
