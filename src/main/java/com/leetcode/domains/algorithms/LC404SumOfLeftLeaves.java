@@ -19,7 +19,7 @@ public class LC404SumOfLeftLeaves {
 
     static class Solution {
 
-        public int leftTraverse(TreeNode<Integer> root) {
+        private int leftTraverse(TreeNode<Integer> root) {
             if (root == null) return 0;
             else if (root.left == null && root.right == null) return root.val;
             return sumOfLeftLeaves(root.right) + leftTraverse(root.left);
